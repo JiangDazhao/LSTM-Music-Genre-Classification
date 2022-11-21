@@ -128,7 +128,7 @@ class GenreFeatureData:
             genre = re.split("[ /]", splits[1])[3]
             target.append(genre)
 
-            data[i, :, 0:13] = mfcc.T[0:self.timeseries_length, :]
+            data[i, :, 1:13] = mfcc.T[0:self.timeseries_length, :]
             data[i, :, 13:14] = spectral_center.T[0:self.timeseries_length, :]
             data[i, :, 14:26] = chroma.T[0:self.timeseries_length, :]
             data[i, :, 26:33] = spectral_contrast.T[0:self.timeseries_length, :]
