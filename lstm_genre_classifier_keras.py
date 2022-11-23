@@ -42,7 +42,9 @@
 """
 
 import logging
+from pathlib import Path
 import os
+import time
 from keras.models import Sequential
 from keras.layers import LSTM
 from keras.layers import Dense
@@ -97,8 +99,9 @@ model.compile(loss="categorical_crossentropy", optimizer=opt, metrics=["accuracy
 model.summary()
 
 print("Training ...")
+begin_time = time.time()
 batch_size = 35  # num of training examples per minibatch
-num_epochs = 400
+num_epochs = 50
 model.fit(
     genre_features.train_X,
     genre_features.train_Y,
@@ -121,6 +124,9 @@ score, accuracy = model.evaluate(
 print("Test loss:  ", score)
 print("Test accuracy:  ", accuracy)
 
+end_time = time.time()
+print('Total time: {} s'.format(int(end_time-begin_time)))
+
 # Creates a HDF5 file 'lstm_genre_classifier.h5'
 model_filename = "lstm_genre_classifier_lstm.h5"
 print("\nSaving model: " + model_filename)
@@ -128,7 +134,7 @@ model.save(model_filename)
 # Creates a json file
 print("creating .json file....")
 model_json = model.to_json()
-f = os.Path("./lstm_genre_classifier_lstm.json")
+f = Path("./lstm_genre_classifier_lstm.json")
 f.write_text(model_json)
 
 # serialize model to JSON, this is to reflect the model you create

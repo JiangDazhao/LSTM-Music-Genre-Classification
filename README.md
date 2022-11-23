@@ -23,12 +23,9 @@ The model `model.json` and weight file (`lstm_genre_classifier_lstm.h5`) are cre
 
  In the `./weights/` you can find trained model weights and model architecture.
 
- To test the model on your custom audio file, run
+ Test the model on our custom files, run
 
-     python3 predict_example.py path/to/custom/file.mp3
- or to test the model on our custom files, run
-
-     python3 predict_example.py audio/classical_music.mp3
+     python3 predict_example.py audio/UCB.00020.au
 
 ### Ideas for improving accuracy:
  * Normalize MFCCs & other input features ([Recurrent BatchNorm](https://arxiv.org/pdf/1603.09025v4.pdf)?)

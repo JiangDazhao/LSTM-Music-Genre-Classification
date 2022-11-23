@@ -11,14 +11,11 @@ class GenreFeatureData:
     "Music audio features for genre classification"
     hop_length = None
     genre_list = [
-        "classical",
-        "country",
-        "disco",
-        "hiphop",
-        "jazz",
-        "metal",
-        "pop",
-        "reggae",
+        "CNN",
+        "NJUST",
+        "SaudiArabia",
+        "UCB",
+        "UESTC",
     ]
 
     dir_trainfolder = "./gtzan/_train"
