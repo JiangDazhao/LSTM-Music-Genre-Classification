@@ -4,11 +4,10 @@
  * Use multiple layers of LSTM Recurrent Neural Nets
 
 ### Environment
-run on 2021 Macbook Pro GPU        
+run on 2021 Macbook Pro CPU        
 ios version is macOS Ventura 13.0.1     
 memory is 16GB         
-CPU kernel is 10        
-GPU kernel is 16
+CPU kernel is 10
 
 ### Dataset
  recognize 5 different NAMEs, Record each NAME for at least 22 times (10 for training, 5 for test, 5 for validation, and 2 for prediction test), so you need at least 22*5 files in total
