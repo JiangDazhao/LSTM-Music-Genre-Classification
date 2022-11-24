@@ -86,8 +86,13 @@ print("Build LSTM RNN model ...")
 model = Sequential()
 
 model.add(LSTM(units=128, dropout=0.05, recurrent_dropout=0.35, return_sequences=True, input_shape=input_shape))
-model.add(LSTM(units=32,  dropout=0.05, recurrent_dropout=0.35, return_sequences=False))
+model.add(LSTM(units=64, dropout=0.05, recurrent_dropout=0.5, return_sequences=True))
+model.add(LSTM(units=64, dropout=0.05, recurrent_dropout=0.5, return_sequences=True))
+model.add(LSTM(units=32, dropout=0.05, recurrent_dropout=0.5, return_sequences=True))
+model.add(LSTM(units=32, dropout=0.05, recurrent_dropout=0.5, return_sequences=True))
+model.add(LSTM(units=32, dropout=0.05, recurrent_dropout=0.35, return_sequences=False))#added
 model.add(Dense(units=genre_features.train_Y.shape[1], activation="softmax"))
+
 
 print("Compiling ...")
 # Keras optimizer defaults:
@@ -101,7 +106,7 @@ model.summary()
 print("Training ...")
 begin_time = time.time()
 batch_size = 35  # num of training examples per minibatch
-num_epochs = 400
+num_epochs = 100
 model.fit(
     genre_features.train_X,
     genre_features.train_Y,

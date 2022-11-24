@@ -104,7 +104,7 @@ class GenreFeatureData:
     def extract_audio_features(self, list_of_audiofiles):
 
         data = np.zeros(
-            (len(list_of_audiofiles), self.timeseries_length, 33), dtype=np.float64
+            (len(list_of_audiofiles), self.timeseries_length, 32), dtype=np.float64
         )
         target = []
 
@@ -125,10 +125,15 @@ class GenreFeatureData:
             genre = re.split("[ /]", splits[1])[3]
             target.append(genre)
 
-            data[i, :, 0:13] = mfcc.T[0:self.timeseries_length, :]
-            data[i, :, 13:14] = spectral_center.T[0:self.timeseries_length, :]
-            data[i, :, 14:26] = chroma.T[0:self.timeseries_length, :]
-            data[i, :, 26:33] = spectral_contrast.T[0:self.timeseries_length, :]
+            # data[i, :, 0:13] = mfcc.T[0:self.timeseries_length, :]
+            # data[i, :, 13:14] = spectral_center.T[0:self.timeseries_length, :]
+            # data[i, :, 14:26] = chroma.T[0:self.timeseries_length, :]
+            # data[i, :, 26:33] = spectral_contrast.T[0:self.timeseries_length, :]
+
+            data[i, :, 0:12] = mfcc.T[0:self.timeseries_length, 1:13] #khw, skip mfcc0, .T is transpose
+            data[i, :, 13-1:14-1] = spectral_center.T[0:self.timeseries_length, :]
+            data[i, :, 14-1:26-1] = chroma.T[0:self.timeseries_length, :]
+            data[i, :, 26-1:33-1] = spectral_contrast.T[0:self.timeseries_length, :]
 
             print(
                 "Extracted features audio track %i of %i."
